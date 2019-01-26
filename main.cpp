@@ -24,18 +24,32 @@ struct Product
 
 struct Drone 
 {
-    Drone()
-    {
+    intp pair;
+    int maxPayLoad;
+    vector<product> products; // same size as wareHouse product vecotr
 
+    Drone(int maxP)
+    {
+        maxPayLoad = maxP;
     }
 
-    void Load()
-    {
 
+    //items is a vector of amount of items to take from each product ; should be the same size as w
+    //d = GetDistance(droneLocation, wareHouseLocation)
+    Load(double d, WareHouse& w, Vector& items) 
+    {
+        for(unsigned int i = 0; i < items.Size(); i++)
+        {  
+            w.listProdType[1] = w.listProdType[i] - items[i];
+            products[i] = products[i] + items[i];
+            maxPayLoad = maxPayLoad + (items[i] * items[i].weight);
+        }
+        totalTurns  = totalTurns +  d + 1;
     }
 
-    void Deliver()
+    Deliver(double d, Order& o)
     {
+        
 
     }
 
