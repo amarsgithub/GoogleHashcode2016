@@ -11,7 +11,11 @@ typedef pair<int,int> intp;
 
 struct Product
 {
+    Product(){}
+    Product(int weight, int numProd)
+    {
 
+    }
 };
 
 struct Drone 
@@ -35,8 +39,6 @@ struct Drone
     {
 
     }
-
-    intp droneLocation = 
 
 };
 
