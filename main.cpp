@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <fstream>
 #include <math.h>
 #include <vector>
 using namespace std;
@@ -10,10 +11,12 @@ typedef pair<int,int> intp;
 //hello! i am pushing -jewel
 //more!
 
+uint totalTurns; 
+
 struct Product
 {
     Product(){}
-    Product(int weight, int prodTyes)
+    Product(int weight)
     {
 
     }
@@ -26,22 +29,22 @@ struct Drone
 
     }
 
-    Load()
+    void Load()
     {
 
     }
 
-    Deliver()
+    void Deliver()
     {
 
     }
 
-    Unload()
+    void Unload()
     {
 
     }
 
-    Wait()
+    void Wait()
     {
 
     }
@@ -50,7 +53,7 @@ struct Drone
 
 struct Location
 {
-    pair<int, int>
+    intp loc; 
     Location()
     {
 
@@ -69,6 +72,9 @@ struct House
     int houseCol;
 
     House(pair<int, int> location, vector<int> prodType)
+    {
+
+    }
 };
 
 struct Warehouse
@@ -91,15 +97,15 @@ struct Order
     {
 
     }
-}
+};
 
 struct Solution 
 {
     int rows, cols, numDrones, turns, maxPayLoad;
 
     vector<Drone> drones;
-    vector<Order> orders;
-    vector<Warehouse> warehouse;
+    vector<Order> ordersVec;
+    vector<Warehouse> warehouses;
     vector<House> houses;
     vector<Product> products; 
 
@@ -107,14 +113,14 @@ struct Solution
     int numWarehouses; 
     int numOrders;
 
-    Solver(ifstream &ifs)
+    Solution(ifstream &ifs)
     {
         string s;
         stringstream ss;
         getline(ifs, s);
         ss << s;
 
-        ss >> this->rows >> this->cols >> this->numDrones >> this->turns >> this->maxPayLoad;
+        ss >> this->rows >> this->cols >> this->numDrones >> totalTurns >> this->maxPayLoad;
 
 
         getline(ifs, s); // num types of products 
@@ -126,7 +132,9 @@ struct Solution
         {
             int tempWeight; 
             ss << s;
-            products.push_back(Product(stoi(s)));
+            int tempValue = stoi(s);
+            Product p(tempValue);
+            products.push_back(p);
         }
 
 
@@ -137,21 +145,22 @@ struct Solution
         {
             getline(ifs, s); // s contains x and y location 
             ss << s; // x location in ss right now 
-            int xLoc = stoi(ss);
+            int xLoc = stoi(ss.str());
             ss << s; // y location in ss
-            int yLoc = stoi(ss);
+            int yLoc = stoi(ss.str());
 
             vector<int> items;
             getline(ifs, s);
             for (int i = 0; i < numProductTypes; i++)
             {
                 ss << s; // item
-                items.push_back(stoi(ss));
-            }                    
-            warehouses.push_back(Warehouse(make_pair(xLoc, yLoc), items));
+                items.push_back(stoi(ss.str()));
+            }         
+            Warehouse tempWarehouse(intp(xLoc, yLoc), items);          
+            warehouses.push_back(tempWarehouse);
         }
 
-        // s contains numOrders
+        // // s contains numOrders
         getline(ifs, s); 
         numOrders = stoi(s);
 
@@ -159,9 +168,9 @@ struct Solution
         {
             getline(ifs, s); // s contains x and y coordinate for order
             ss << s; 
-            int xLoc = stoi(ss);
+            int xLoc = stoi(ss.str());
             ss << s;
-            int yLoc = stoi(ss);
+            int yLoc = stoi(ss.str());
 
             getline(ifs, s); // s contains number of items in order 
             int numItems = stoi(s);
@@ -171,12 +180,13 @@ struct Solution
             for(int i = 0; i < numItems; i++)
             {
                 ss << s;
-                orders[stoi(ss)]++;
+                orders[stoi(ss.str())]++;
             }
-
-            orders.push_back(Order(make_pair<int,int>(xLoc, yLoc), orders));   
+            Order tempOrder(pair<int,int>(xLoc, yLoc), orders);
+            ordersVec.push_back(tempOrder);
         }
     }
+    
 
 
 
@@ -207,14 +217,13 @@ int main(void)
 {
     // File IO shit goes here 
     // All of the files would ideally go into a vector of ifstream objects. 
-    ifstream input();
+    ifstream input("input.txt");
 
     double test = GetDistance(pair<int, int>(0,0), pair<int, int>(4,4));
     std::cout << test << std::endl;
 
     // Create a solution vector as well that takes in all files 
-    
-
+    Solution solver(input);
 
     return 0;
 }
