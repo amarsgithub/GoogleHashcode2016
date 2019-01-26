@@ -9,7 +9,6 @@ typedef unsigned int uint;
 typedef pair<int,int> intp;
 //hello! i am pushing -jewel
 //more!
-uint totalTurns;
 
 struct Product
 {
@@ -94,9 +93,12 @@ struct Warehouse
 struct Order
 {
     bool orderComplete; //
+    intp locOfOrder;
     Order(intp location, vector<int> products)
     {
-
+        locOfOrder.first = location.first;
+        locOfOrder.second = location.second;
+        this->orderComplete = false;
     }
 }
 
