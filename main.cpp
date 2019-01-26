@@ -12,10 +12,13 @@ typedef pair<int,int> intp;
 
 struct Product
 {
+    int prodTypeWeight;
+    int numProdTypes;
     Product(){}
     Product(int weight, int prodTyes)
     {
-
+        this->numProdTypes = prodTyes;
+        this->prodTypeWeight = weight;
     }
 };
 
@@ -50,10 +53,11 @@ struct Drone
 
 struct Location
 {
-    pair<int, int>
+    pair<int, int> loc;
     Location()
     {
-
+        loc.first = 0;
+        loc.second = 0;
     }
 
     Location(pair<int,int> location)
