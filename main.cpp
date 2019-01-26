@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <algorithm>
 #include <math.h>
 using namespace std;
 
@@ -21,8 +23,20 @@ struct Solution
 {
     int rows, cols, drones, turns, maxPayLoad;
 
+    Solver(ifstream &ifs)
+    {
+        string s;
+        stringstream ss;
+        getline(ifs, s);
+        ss << s;
+
+        // uint 
+    }
 
 
+
+    // Amar will write the main algorithm here
+    
 
 };
 
