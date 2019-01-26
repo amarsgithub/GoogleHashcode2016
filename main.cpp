@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <math.h>
 using namespace std;
 
 typedef unsigned int uint;
@@ -43,8 +44,15 @@ struct Solution
 double GetDistance(intp one, intp two)
 {
     double returnValue;
+    int xSub = 0;
+    int ySub = 0;
+    xSub = one.first - two.first;
+    ySub = one.second - two.second;
+    xPow = pow(xSub, 2);
+    yPow = pow(ySub, 2);
+    returnValue = sqrt(xPow + yPow);
     
-    return returnValue
+    return returnValue;
 }
 
 
