@@ -112,7 +112,7 @@ struct Solution
                 ss << s; // item
                 items.push_back(stoi(ss));
             }                    
-            Warehouse(make_pair(xLoc, yLoc), items);
+            warehouses.push_back(Warehouse(make_pair(xLoc, yLoc), items));
         }
 
         // s contains numOrders
