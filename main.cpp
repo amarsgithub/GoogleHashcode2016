@@ -2,6 +2,7 @@
 #include <sstream>
 #include <algorithm>
 #include <math.h>
+#include <vector>
 using namespace std;
 
 typedef unsigned int uint;
@@ -12,7 +13,7 @@ typedef pair<int,int> intp;
 struct Product
 {
     Product(){}
-    Product(int weight, int numProd)
+    Product(int weight, int prodTyes)
     {
 
     }
@@ -20,6 +21,11 @@ struct Product
 
 struct Drone 
 {
+    Drone()
+    {
+
+    }
+
     Load()
     {
 
@@ -44,18 +50,48 @@ struct Drone
 
 struct Location
 {
+    pair<int, int>
+    Location()
+    {
 
+    }
+
+    Location(pair<int,int> location)
+    {
+
+    }
 };
 
 struct House
 {
+    vector <int> numProdDeliv;
+    int houseRow;
+    int houseCol;
 
+    House(pair<int, int> location, vector<int> prodType)
 };
 
 struct Warehouse
 {
-
+    int warRow;
+    int warColumn;
+    vector <int> listProdType;
+    int totalInventory;
+    Warehouse(pair<int, int> location, vector<int> prodType)
+    {
+        this->warRow = location.first;
+        this->warColumn = location.second;
+        this->listProdType = prodType;
+    }
 };
+
+struct Order
+{
+    Order(pair<int, int> location, vector<int> products)
+    {
+
+    }
+}
 
 struct Solution 
 {
