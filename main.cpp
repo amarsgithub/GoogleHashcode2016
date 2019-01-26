@@ -9,6 +9,7 @@ typedef unsigned int uint;
 typedef pair<int,int> intp;
 //hello! i am pushing -jewel
 //more!
+uint totalTurns;
 
 struct Product
 {
@@ -26,7 +27,7 @@ struct Drone
 {
     Drone()
     {
-
+// test
     }
 
     Load()
@@ -36,7 +37,7 @@ struct Drone
 
     Deliver()
     {
-
+        
     }
 
     Unload()
