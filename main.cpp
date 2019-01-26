@@ -99,7 +99,17 @@ struct Order
 
 struct Solution 
 {
-    int rows, cols, drones, turns, maxPayLoad;
+    int rows, cols, numDrones, turns, maxPayLoad;
+
+    vector<Drone> drones;
+    vector<Order> orders;
+    vector<Warehouse> warehouse;
+    vector<House> houses;
+    vector<Product> products; 
+
+    int numProductTypes;
+    int numWarehouses; 
+    int numOrders;
 
     Solver(ifstream &ifs)
     {
@@ -108,12 +118,75 @@ struct Solution
         getline(ifs, s);
         ss << s;
 
-        // uint 
+        ss >> this->rows >> this->cols >> this->numDrones >> this->turns >> this->maxPayLoad;
+
+
+        getline(ifs, s); // num types of products 
+        numProductTypes = stoi(s);
+
+        getline(ifs, s); // all of the product values 
+        // below loop reads through each of the products weights
+        for (int i = 0; i < numProductTypes; i++)
+        {
+            int tempWeight; 
+            ss << s;
+            products.push_back(Product(stoi(s)));
+        }
+
+
+        // Warehouse part 
+        getline(ifs, s);
+        numWarehouses = stoi(s);
+        for (int i = 0; i < numWarehouses; i++)
+        {
+            getline(ifs, s); // s contains x and y location 
+            ss << s; // x location in ss right now 
+            int xLoc = stoi(ss);
+            ss << s; // y location in ss
+            int yLoc = stoi(ss);
+
+            vector<int> items;
+            getline(ifs, s);
+            for (int i = 0; i < numProductTypes; i++)
+            {
+                ss << s; // item
+                items.push_back(stoi(ss));
+            }                    
+            warehouses.push_back(Warehouse(make_pair(xLoc, yLoc), items));
+        }
+
+        // s contains numOrders
+        getline(ifs, s); 
+        numOrders = stoi(s);
+
+        for (int i = 0; i < numOrders; i++)
+        {
+            getline(ifs, s); // s contains x and y coordinate for order
+            ss << s; 
+            int xLoc = stoi(ss);
+            ss << s;
+            int yLoc = stoi(ss);
+
+            getline(ifs, s); // s contains number of items in order 
+            int numItems = stoi(s);
+
+            getline(ifs, s);
+            vector<int> orders(numItems, 0);
+            for(int i = 0; i < numItems; i++)
+            {
+                ss << s;
+                orders[stoi(ss)]++;
+            }
+
+            orders.push_back(Order(make_pair<int,int>(xLoc, yLoc), orders));   
+        }
     }
 
 
 
     // Amar will write the main algorithm here
+
+
     
 
 };
