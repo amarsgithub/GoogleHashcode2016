@@ -29,7 +29,7 @@ struct Drone
 {
     Drone()
     {
-// test
+
     }
 
     void Load()
@@ -42,8 +42,10 @@ struct Drone
         
     }
 
-    void Unload()
+    void Unload(intp unloadLoc)
     {
+        
+        totalTurns--;
 
     }
 
@@ -52,22 +54,6 @@ struct Drone
 
     }
 
-};
-
-struct Location
-{
-    intp loc; 
-    Location();
-    {
-        loc.first = 0;
-        loc.second = 0;
-    }
-
-    Location(intp location)
-    {
-        loc.first = location.first;
-        loc.second = location.second;
-    }
 };
 
 struct House
@@ -81,14 +67,11 @@ struct House
 
 struct Warehouse
 {
-    int warRow;
-    int warColumn;
+    intp warLoc;
     vector <int> listProdType;
     int totalInventory;
     Warehouse(intp location, vector<int> prodType)
-    {
-        this->warRow = location.first;
-        this->warColumn = location.second;
+    {   this->warLoc = location;
         this->listProdType = prodType;
     }
 };
@@ -97,11 +80,15 @@ struct Order
 {
     bool orderComplete; //
     intp locOfOrder;
+        this->warRow = location.first;
+        this->warColumn = location.second;
+    vector<int> orderProds;
     Order(intp location, vector<int> products)
     {
         locOfOrder.first = location.first;
         locOfOrder.second = location.second;
         this->orderComplete = false;
+        this->orderProds = products;
     }
 };
 
