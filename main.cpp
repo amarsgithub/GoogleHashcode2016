@@ -15,9 +15,44 @@ struct Product
 
 struct Drone 
 {
+    Load()
+    {
+
+    }
+
+    Deliver()
+    {
+
+    }
+
+    Unload()
+    {
+
+    }
+
+    Wait()
+    {
+
+    }
+
+    intp droneLocation = 
 
 };
 
+struct Location
+{
+
+};
+
+struct House
+{
+
+};
+
+struct Warehouse
+{
+
+};
 
 struct Solution 
 {
