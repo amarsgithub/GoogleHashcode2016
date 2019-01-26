@@ -53,16 +53,17 @@ struct Drone
 
 struct Location
 {
-    pair<int, int> loc;
+    intp loc;
     Location()
     {
         loc.first = 0;
         loc.second = 0;
     }
 
-    Location(pair<int,int> location)
+    Location(intp location)
     {
-
+        loc.first = location.first;
+        loc.second = location.second;
     }
 };
 
@@ -72,7 +73,7 @@ struct House
     int houseRow;
     int houseCol;
 
-    House(pair<int, int> location, vector<int> prodType)
+    House(intp location, vector<int> prodType)
 };
 
 struct Warehouse
@@ -81,7 +82,7 @@ struct Warehouse
     int warColumn;
     vector <int> listProdType;
     int totalInventory;
-    Warehouse(pair<int, int> location, vector<int> prodType)
+    Warehouse(intp location, vector<int> prodType)
     {
         this->warRow = location.first;
         this->warColumn = location.second;
@@ -91,7 +92,8 @@ struct Warehouse
 
 struct Order
 {
-    Order(pair<int, int> location, vector<int> products)
+    bool orderComplete; //
+    Order(intp location, vector<int> products)
     {
 
     }
