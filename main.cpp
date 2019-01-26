@@ -187,10 +187,7 @@ struct Solution
         }
     }
     
-
-
-
-    // Amar will write the main algorithm here
+    // Amar and Jewel will write the main algorithm here
 
 
     
