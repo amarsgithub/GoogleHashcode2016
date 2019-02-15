@@ -11,6 +11,29 @@ typedef pair<int,int> intp;
 //hello! i am pushing -jewel
 //more!
 
+// Barebones:
+
+// One order at a time
+// for (all the orders)	
+// 	// finding the drone 
+// 	find a drone that’s free
+	
+// 	// finding the warehouse 
+// 	// need the closest warehouse that has stock
+// 	for (all the warehouses)
+// 		if (warehouse has item)
+// 			if min (warehousesfound, thiswarehouse)
+
+	
+// 	// do the process to place the order 
+	
+// 	// subtract number of turns
+// 	// pick up the order 
+// 	// subtract one for placing the order
+// 	// math – warehouse-=objectNum && drone += objectNum 
+// 	// deliver: drone -= objectNum && turns-- 
+
+
 uint totalTurns; 
 
 struct Product
